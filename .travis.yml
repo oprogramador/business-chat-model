@@ -5,6 +5,7 @@ node_js:
   - node
 script:
   - npm install
+  - APP_DIR=src npm run postinstall
   - npm test
 notifications:
   email:
