@@ -1,9 +1,9 @@
+import IMessage from 'business-chat-model/abstract/IMessage';
 import IRoom from 'business-chat-model/abstract/IRoom';
-import InvalidInstanceError from 'business-chat-model/errors/InvalidInstanceError';
-import Message from 'business-chat-model/model/Message';
-import User from 'business-chat-model/model/User';
+import IUser from 'business-chat-model/abstract/IUser';
 import ValidationError from 'business-chat-model/errors/ValidationError';
 import _ from 'lodash';
+import assertInterface from 'business-chat-model/typeChecking/assertInterface';
 
 export default class Room {
   constructor({ name }) {
@@ -33,16 +33,12 @@ export default class Room {
   }
 
   addUser(user) {
-    if (!(user instanceof User)) {
-      throw new InvalidInstanceError();
-    }
+    assertInterface(user, IUser);
     this.users.push(user);
   }
 
   addMessage(message) {
-    if (!(message instanceof Message)) {
-      throw new InvalidInstanceError();
-    }
+    assertInterface(message, IMessage);
     this.messages.push(message);
   }
 

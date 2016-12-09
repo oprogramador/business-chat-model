@@ -1,5 +1,6 @@
 import ITeam from 'business-chat-model/abstract/ITeam';
 import ValidationError from 'business-chat-model/errors/ValidationError';
+import assertType from 'business-chat-model/typeChecking/assertType';
 
 export default class Team {
   constructor({ name }) {
@@ -14,9 +15,7 @@ export default class Team {
   }
 
   validate({ name }) {
-    if (typeof name !== 'string') {
-      throw new ValidationError();
-    }
+    assertType(name, 'string');
     if (name === '') {
       throw new ValidationError();
     }

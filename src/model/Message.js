@@ -1,8 +1,8 @@
 import IMessage from 'business-chat-model/abstract/IMessage';
-import InvalidInstanceError from 'business-chat-model/errors/InvalidInstanceError';
-import Room from 'business-chat-model/model/Room';
-import User from 'business-chat-model/model/User';
-import ValidationError from 'business-chat-model/errors/ValidationError';
+import IRoom from 'business-chat-model/abstract/IRoom';
+import IUser from 'business-chat-model/abstract/IUser';
+import assertInterface from 'business-chat-model/typeChecking/assertInterface';
+import assertType from 'business-chat-model/typeChecking/assertType';
 
 export default class Message {
   constructor({ room, sender, text }) {
@@ -22,15 +22,9 @@ export default class Message {
   }
 
   validate({ room, sender, text }) {
-    if (!(room instanceof Room)) {
-      throw new InvalidInstanceError();
-    }
-    if (!(sender instanceof User)) {
-      throw new InvalidInstanceError();
-    }
-    if (typeof text !== 'string') {
-      throw new ValidationError();
-    }
+    assertInterface(room, IRoom);
+    assertInterface(sender, IUser);
+    assertType(text, 'string');
   }
 
   getText() {

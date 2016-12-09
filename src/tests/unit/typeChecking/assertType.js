@@ -4,29 +4,11 @@ import expect from 'business-chat-model/tests/expect';
 
 describe('assertType', () => {
   it('throws ValidationError for invalid type', () => {
-    class IFoo {
-    }
-    class IBar {
-    }
-    const object = {
-      getInterfaces() {
-        return [IFoo];
-      },
-    };
-
-    expect(() => assertType(object, IBar)).to.throw(ValidationError);
+    expect(() => assertType('foo', 'number')).to.throw(ValidationError);
   });
 
   it('returns null for valid type', () => {
-    class IFoo {
-    }
-    const object = {
-      getInterfaces() {
-        return [IFoo];
-      },
-    };
-
-    expect(assertType(object, IFoo)).to.be.null();
+    expect(assertType('foo', 'string')).to.be.null();
   });
 });
 
