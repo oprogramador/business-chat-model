@@ -1,3 +1,4 @@
+import IUser from 'business-chat-model/abstract/IUser';
 import User from 'business-chat-model/model/User';
 import ValidationError from 'business-chat-model/errors/ValidationError';
 import expect from 'business-chat-model/tests/expect';
@@ -12,6 +13,14 @@ describe('User', () => {
 
   afterEach('restore sandbox', () => {
     sandbox.restore();
+  });
+
+  describe('#getInterfaces', () => {
+    it('includes IUser', () => {
+      const user = new User({ username: 'foo' });
+
+      expect(user.getInterfaces()).to.include(IUser);
+    });
   });
 
   it('throws ValidationError when provided username is not a string', () => {

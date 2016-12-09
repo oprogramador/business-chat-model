@@ -1,9 +1,16 @@
+import IUser from 'business-chat-model/abstract/IUser';
 import ValidationError from 'business-chat-model/errors/ValidationError';
 
 export default class User {
   constructor({ username }) {
     this.validate({ username });
     this.username = username;
+  }
+
+  getInterfaces() {
+    return [
+      IUser,
+    ];
   }
 
   validate({ username }) {

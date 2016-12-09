@@ -1,3 +1,4 @@
+import IMessage from 'business-chat-model/abstract/IMessage';
 import InvalidInstanceError from 'business-chat-model/errors/InvalidInstanceError';
 import Message from 'business-chat-model/model/Message';
 import Room from 'business-chat-model/model/Room';
@@ -17,6 +18,18 @@ describe('Message', () => {
     sandbox.restore();
   });
 
+  describe('#getInterfaces', () => {
+    it('includes IMessage', () => {
+      const message = new Message({
+        room: new Room({}),
+        sender: new User({ username: 'alicia' }),
+        text: 'foo-bar',
+      });
+
+      expect(message.getInterfaces()).to.include(IMessage);
+    });
+  });
+
   it('throws ValidationError when provided text is not a string', () => {
     expect(() => new Message({
       room: new Room({}),
@@ -25,7 +38,7 @@ describe('Message', () => {
     })).to.throw(ValidationError);
   });
 
-  it('throws InvalidInstanceError when provided sender is not an instance of User', () => {
+  it('throws InvalidInstanceError when provided sender is not IUser', () => {
     expect(() => new Message({
       room: new Room({}),
       sender: {},
@@ -33,7 +46,7 @@ describe('Message', () => {
     })).to.throw(InvalidInstanceError);
   });
 
-  it('throws InvalidInstanceError when provided room is not an instance of Room', () => {
+  it('throws InvalidInstanceError when provided room is not IRoom', () => {
     expect(() => new Message({
       room: {},
       sender: new User({ username: 'alicia' }),

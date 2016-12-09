@@ -1,3 +1,4 @@
+import IRoom from 'business-chat-model/abstract/IRoom';
 import InvalidInstanceError from 'business-chat-model/errors/InvalidInstanceError';
 import Message from 'business-chat-model/model/Message';
 import User from 'business-chat-model/model/User';
@@ -10,6 +11,12 @@ export default class Room {
     this.name = name;
     this.users = [];
     this.messages = [];
+  }
+
+  getInterfaces() {
+    return [
+      IRoom,
+    ];
   }
 
   validate({ name }) {

@@ -1,3 +1,4 @@
+import ITeam from 'business-chat-model/abstract/ITeam';
 import Team from 'business-chat-model/model/Team';
 import ValidationError from 'business-chat-model/errors/ValidationError';
 import expect from 'business-chat-model/tests/expect';
@@ -12,6 +13,14 @@ describe('Team', () => {
 
   afterEach('restore sandbox', () => {
     sandbox.restore();
+  });
+
+  describe('#getInterfaces', () => {
+    it('includes ITeam', () => {
+      const team = new Team({ name: 'foo' });
+
+      expect(team.getInterfaces()).to.include(ITeam);
+    });
   });
 
   it('throws ValidationError when provided team name is not a string', () => {

@@ -1,3 +1,4 @@
+import IMessage from 'business-chat-model/abstract/IMessage';
 import InvalidInstanceError from 'business-chat-model/errors/InvalidInstanceError';
 import Room from 'business-chat-model/model/Room';
 import User from 'business-chat-model/model/User';
@@ -12,6 +13,12 @@ export default class Message {
     this.createdAt = Date.now();
 
     room.addMessage(this);
+  }
+
+  getInterfaces() {
+    return [
+      IMessage,
+    ];
   }
 
   validate({ room, sender, text }) {

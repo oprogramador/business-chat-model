@@ -1,3 +1,4 @@
+import IRoom from 'business-chat-model/abstract/IRoom';
 import InvalidInstanceError from 'business-chat-model/errors/InvalidInstanceError';
 import Room from 'business-chat-model/model/Room';
 import User from 'business-chat-model/model/User';
@@ -14,6 +15,14 @@ describe('Room', () => {
 
   afterEach('restore sandbox', () => {
     sandbox.restore();
+  });
+
+  describe('#getInterfaces', () => {
+    it('includes IRoom', () => {
+      const room = new Room({});
+
+      expect(room.getInterfaces()).to.include(IRoom);
+    });
   });
 
   it('throws ValidationError when provided team name is neither string nor undefined', () => {
@@ -57,7 +66,7 @@ describe('Room', () => {
   });
 
   describe('#addUser', () => {
-    it('throws InvalidInstanceError for object not being instance of User', () => {
+    it('throws InvalidInstanceError for object not being IUser', () => {
       const room = new Room({});
       expect(() => room.addUser({})).to.throw(InvalidInstanceError);
     });
