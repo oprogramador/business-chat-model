@@ -1,6 +1,6 @@
 {
   "name": "business-chat-model",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Model for business-chat",
   "scripts": {
     "build": "rm -rf build && babel src --out-dir build --ignore tests",
