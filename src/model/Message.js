@@ -1,7 +1,4 @@
 import IMessage from 'business-chat-model/abstract/IMessage';
-import IRoom from 'business-chat-model/abstract/IRoom';
-import IUser from 'business-chat-model/abstract/IUser';
-import assertInterface from 'business-chat-model/typeChecking/assertInterface';
 import assertType from 'business-chat-model/typeChecking/assertType';
 
 export default class Message {
@@ -21,9 +18,7 @@ export default class Message {
     ];
   }
 
-  validate({ room, sender, text }) {
-    assertInterface(room, IRoom);
-    assertInterface(sender, IUser);
+  validate({ text }) {
     assertType(text, 'string');
   }
 

@@ -1,9 +1,6 @@
-import IMessage from 'business-chat-model/abstract/IMessage';
 import IRoom from 'business-chat-model/abstract/IRoom';
-import IUser from 'business-chat-model/abstract/IUser';
 import ValidationError from 'business-chat-model/errors/ValidationError';
 import _ from 'lodash';
-import assertInterface from 'business-chat-model/typeChecking/assertInterface';
 
 export default class Room {
   constructor({ name }) {
@@ -33,12 +30,10 @@ export default class Room {
   }
 
   addUser(user) {
-    assertInterface(user, IUser);
     this.users.push(user);
   }
 
   addMessage(message) {
-    assertInterface(message, IMessage);
     this.messages.push(message);
   }
 
