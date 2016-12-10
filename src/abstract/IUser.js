@@ -1,1 +1,1 @@
-export default Symbol('IUser');
+export default 'IUser';

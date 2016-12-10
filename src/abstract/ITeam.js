@@ -1,1 +1,1 @@
-export default Symbol('ITeam');
+export default 'ITeam';
