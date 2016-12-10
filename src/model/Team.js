@@ -6,6 +6,8 @@ export default class Team {
   constructor({ name }) {
     this.validate({ name });
     this.name = name;
+    this.rooms = [];
+    this.users = [];
   }
 
   getInterfaces() {
@@ -23,5 +25,21 @@ export default class Team {
 
   getName() {
     return this.name;
+  }
+
+  addUser(user) {
+    this.users.push(user);
+  }
+
+  addRoom(room) {
+    this.rooms.push(room);
+  }
+
+  getUsers() {
+    return this.users;
+  }
+
+  getRooms() {
+    return this.rooms;
   }
 }

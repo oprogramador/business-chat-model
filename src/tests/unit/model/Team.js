@@ -1,5 +1,7 @@
 import ITeam from 'business-chat-model/abstract/ITeam';
+import Room from 'business-chat-model/model/Room';
 import Team from 'business-chat-model/model/Team';
+import User from 'business-chat-model/model/User';
 import ValidationError from 'business-chat-model/errors/ValidationError';
 import expect from 'business-chat-model/tests/expect';
 import sinon from 'sinon';
@@ -46,5 +48,25 @@ describe('Team', () => {
   it('assigns name', () => {
     const object = new Team({ name: 'foo-bar' });
     expect(object.getName()).to.equal('foo-bar');
+  });
+
+  it('adds user', () => {
+    const room = new Room({});
+    const user = new User({ username: 'alicia' });
+    room.addUser(user);
+    const users = room.getUsers();
+
+    expect(users).to.have.length(1);
+    expect(users[0]).to.equal(user);
+  });
+
+  it('adds room', () => {
+    const team = new Team({ name: 'foo' });
+    const room = new Room({ name: 'bar' });
+    team.addRoom(room);
+    const rooms = team.getRooms();
+
+    expect(rooms).to.have.length(1);
+    expect(rooms[0]).to.equal(room);
   });
 });

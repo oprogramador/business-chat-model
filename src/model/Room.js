@@ -1,6 +1,5 @@
 import IRoom from 'business-chat-model/abstract/IRoom';
 import ValidationError from 'business-chat-model/errors/ValidationError';
-import _ from 'lodash';
 
 export default class Room {
   constructor({ name }) {
@@ -38,10 +37,10 @@ export default class Room {
   }
 
   getUsers() {
-    return _.clone(this.users);
+    return this.users;
   }
 
   getMessages() {
-    return _.clone(this.messages);
+    return this.messages;
   }
 }
