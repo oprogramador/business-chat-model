@@ -1,1 +1,1 @@
-export default 'IRoom';
+export default Symbol('IRoom');

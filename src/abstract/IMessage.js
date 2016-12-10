@@ -1,1 +1,1 @@
-export default 'IMessage';
+export default Symbol('IMessage');
