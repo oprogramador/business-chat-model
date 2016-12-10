@@ -1,2 +1,1 @@
-export default class IUser {
-}
+export default Symbol('IUser');

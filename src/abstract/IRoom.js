@@ -1,2 +1,1 @@
-export default class IRoom {
-}
+export default Symbol('IRoom');

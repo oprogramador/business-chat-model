@@ -1,2 +1,1 @@
-export default class ITeam {
-}
+export default Symbol('ITeam');
